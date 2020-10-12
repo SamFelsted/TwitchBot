@@ -1,5 +1,6 @@
 import cfg
 import ultis
+import market
 
 import random
 import socket
@@ -103,4 +104,14 @@ def main():
                     winChance = 0
             elif "!battle" in message:
                 ultis.chat(s, "AlphaZulu22 has won and has slayed any challenger that dares to question this massive victory. He has delt 999,999,999 damage and healed for double that. He has a base life gen of 100,000 per nano sec and has a base health higher than infinity. He can not be slayed.")
+            #   Cool economy Commands
+
+            elif message.strip() == "!profile":
+                if market.checkData(username):
+                    ultis.chat(s, market.profile(username))
+                else:
+                    market.makeData(username)
+                    ultis.chat(s, "No data was found, so a profile was made")
+
+
 main()
