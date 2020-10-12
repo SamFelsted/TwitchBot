@@ -10,7 +10,7 @@ PASS = key.hiddenKey
 #oauth goes above /\ /\ /\
 
 #Channel Chat ALL LOWER CASE \/ \/ \/
-CHAN = "alphazulu22"
+CHAN = ""
 #Channel ALL LOWER /\ /\ /\
 
 RATE = (20 / 30)
