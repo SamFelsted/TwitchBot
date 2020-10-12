@@ -1,1 +1,23 @@
-{"AlphaZulu22": {"xp": 1, "cash": 170, "inv": [], "level": 1}, "Joe": {"xp": 1, "cash": 100, "inv": [], "level": 1}, "alphazulu22": {"xp": 1, "cash": 100, "inv": [], "level": 1}}
+{
+    "AlphaZulu22": {
+        "job": "none", 
+        "xp": 1, 
+        "cash": 110, 
+        "inv": [], 
+        "level": 1
+    }, 
+    "Joe": {
+        "job": "none", 
+        "xp": 1, 
+        "cash": 100, 
+        "inv": [], 
+        "level": 1
+    }, 
+    "alphazulu22": {
+        "xp": 1, 
+        "job": "none", 
+        "cash": 183, 
+        "inv": [], 
+        "level": 1
+    }
+}

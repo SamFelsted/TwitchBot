@@ -8,6 +8,7 @@ import re
 import time
 from time import sleep
 
+canCommand = True
 ms = cfg.messageSend
 qst = cfg.questions
 guns = cfg.guns
@@ -58,60 +59,72 @@ def main():
             print(response)
 
          #Custom Commands 0w0 
-            #I should probably actaully do this command correctly, nahhhh
-            if message.strip() == "!time":
-                #I really don't want to type a time command
-                ultis.chat(s, "I don't know, you're the one on the computer, I'm just a program")
-            #about, aka me flexing I wrote this
-            elif message.strip() == "!about":
-                #sends the about
-                ultis.chat(s, cfg.about)
-            elif message.strip() == "!toby":
-                ultis.chat(s, toby)
-            #Question Command
-            elif message.strip() == "!question":
-                #sends a question 
-                question = qst[random.randint(0, len(qst)- 1)] #Math is fun
-                ultis.chat(s, question)
-            #Nice
-            elif "69" in message:
-                ultis.chat(s, "Nice")
-            elif "who is joe?" in message.lower():
-                ultis.chat(s, "Joe Mama")
-            #Roll a d6 command
-            elif message.strip() == "!d6":
-                diceRoll = random.randint(1, 6)
-                ultis.chat(s, diceRoll)
-            elif message.strip() == "!POG":
-                ultis.chat(s, pog)
-            #Gun Command
-            elif message.strip() == "!shoot":
-                #Bang Bang Bang
-                gunMessage = "{} shoot a dummy with a{} and did {} points of damage".format(username, guns[random.randint(0, len(guns)- 1)],random.randint(0, 100))
-                ultis.chat(s, gunMessage)
-            elif message.strip() == "!chance":
-                winChance = random.randrange(1, 101)
-                if username == "alphazulu22":
-                    ultis.chat(s, "Sorry Alpha, no cuts for the programmer, but the win rate is {}%".format(winChance))
-                else:
-                    ultis.chat(s, "The chance of the next fight starter winning is {}%".format(winChance))
-            elif "!fight" in message:
-                if winChance == 0:
-                    ultis.attack(s, username, message, 50)
-                    print("Fair Match")
-                else:
-                    ultis.attack(s, username, message, winChance)
-                    winChance = 0
-            elif "!battle" in message:
-                ultis.chat(s, "AlphaZulu22 has won and has slayed any challenger that dares to question this massive victory. He has delt 999,999,999 damage and healed for double that. He has a base life gen of 100,000 per nano sec and has a base health higher than infinity. He can not be slayed.")
-            #   Cool economy Commands
+            if canCommand:
+                #I should probably actaully do this command correctly, nahhhh
+                if message.strip() == "!time":
+                    #I really don't want to type a time command
+                    ultis.chat(s, "I don't know, you're the one on the computer, I'm just a program")
+                #about, aka me flexing I wrote this
+                elif message.strip() == "!about":
+                    #sends the about
+                    ultis.chat(s, cfg.about)
+                elif message.strip() == "!toby":
+                    ultis.chat(s, toby)
+                #Question Command
+                elif message.strip() == "!question":
+                    #sends a question 
+                    question = qst[random.randint(0, len(qst)- 1)] #Math is fun
+                    ultis.chat(s, question)
+                #Nice
+                elif "69" in message:
+                    ultis.chat(s, "Nice")
+                elif "who is joe?" in message.lower():
+                    ultis.chat(s, "Joe Mama")
+                #Roll a d6 command
+                elif message.strip() == "!d6":
+                    diceRoll = random.randint(1, 6)
+                    ultis.chat(s, diceRoll)
+                elif message.strip() == "!POG":
+                    ultis.chat(s, pog)
+                #Gun Command
+                elif message.strip() == "!shoot":
+                    #Bang Bang Bang
+                    gunMessage = "{} shoot a dummy with a{} and did {} points of damage".format(username, guns[random.randint(0, len(guns)- 1)],random.randint(0, 100))
+                    ultis.chat(s, gunMessage)
+                elif message.strip() == "!chance":
+                    winChance = random.randrange(1, 101)
+                    if username == "alphazulu22":
+                        ultis.chat(s, "Sorry Alpha, no cuts for the programmer, but the win rate is {}%".format(winChance))
+                    else:
+                        ultis.chat(s, "The chance of the next fight starter winning is {}%".format(winChance))
+                elif "!fight" in message:
+                    if winChance == 0:
+                        ultis.attack(s, username, message, 50)
+                        print("Fair Match")
+                    else:
+                        ultis.attack(s, username, message, winChance)
+                        winChance = 0
+                elif "!battle" in message:
+                    ultis.chat(s, "AlphaZulu22 has won and has slayed any challenger that dares to question this massive victory. He has delt 999,999,999 damage and healed for double that. He has a base life gen of 100,000 per nano sec and has a base health higher than infinity. He can not be slayed.")
+                #   Cool economy Commands
 
-            elif message.strip() == "!profile":
-                if market.checkData(username):
-                    ultis.chat(s, market.profile(username))
-                else:
-                    market.makeData(username)
-                    ultis.chat(s, "No data was found, so a profile was made")
+                elif message.strip() == "!profile":
+                    if market.checkData(username):
+                        data = market.profile(username)
+                        ultis.chat(s, username + ": ")
+                        ultis.chat(s, " level: " + str(data[1]))
+                        ultis.chat(s, " cash: " + str(data[2]))
+                        ultis.chat(s, " job: "  + str(data[3]))
+                    else:
+                        market.makeData(username)
+                        ultis.chat(s, "No data was found, so a profile was made")
+                elif message.strip() == "!mine":
+                    chanceInt = random.randint(1, 100)
+                    if chanceInt > 30:
+                        ultis.chat(s, "Woah you went mining and found a diamond worth ${}".format(chanceInt))
+                        market.changeMoney(username, chanceInt)
+                    else:
+                        ultis.chat(s, "Lol, you went mining and found nothing")
 
 
 main()
