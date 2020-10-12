@@ -3,7 +3,8 @@ import json
 d = open("data.json")
 users = json.load(d)
 
-jobList = {"teacher": 60, "developer": 100, "streamer": 50, "pet sitter": 40}
+#pay, min bonus, max bonus
+jobList = {"teacher": [60, 10, 30], "developer": [100, 10, 30], "streamer": [30, 5, 1000], "pet sitter": [20, 20, 100]}
 
 def makeData(user):
     users[user] = {'cash' : 100, 'level' : 1,'xp': 1, 'inv' : [], 'job': 'none'}

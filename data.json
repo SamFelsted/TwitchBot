@@ -1,16 +1,16 @@
 {
     "alphazulu22": {
-        "xp": 1, 
-        "cash": 592, 
         "job": "developer", 
-        "inv": [], 
-        "level": 1
-    }, 
-    "backtosnack": {
-        "job": "streamer", 
         "level": 1, 
         "xp": 1, 
         "inv": [], 
-        "cash": 199
+        "cash": 1087
+    }, 
+    "backtosnack": {
+        "xp": 1, 
+        "job": "streamer", 
+        "cash": 199, 
+        "inv": [], 
+        "level": 1
     }
 }

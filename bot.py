@@ -67,7 +67,7 @@ def main():
 
          #Custom Commands 0w0 
             if canCommand:
-                print(len(str(message)))
+                #print(len(str(message)))
                 #I should probably actaully do this command correctly, nahhhh
                 if message.strip() == "!time":
                     #I really don't want to type a time command
@@ -161,8 +161,24 @@ def main():
                     job = jobFormat(message, "!salary ")
                     if market.jobList.has_key(job):
                         salary = market.jobList[job]
-                        ultis.chat(s, "The base salary of a {} is ${}".format(job, salary))
+                        ultis.chat(s, "The base salary of a {} is ${}, with a maxium bonus of ${}".format(job, salary[0], salary[2]))
                     else:
                         ultis.chat(s, "Not a valid job")
+                elif message.strip() == "!work":
+                    if market.checkData(username):
+                        data = market.profile(username)
+                        if data[3] != "none":
+                            job = data[3]
+                            pay = market.jobList[job][0]
+                            low = market.jobList[job][1]
+                            high = market.jobList[job][2]
+                            bonus = random.randint(low, high)
+                            market.changeMoney(username, pay + bonus)
+                            ultis.chat(s, "You made ${} with a bonus of ${} as a {}".format(pay, bonus, job))
+                        else:
+                            ultis.chat(s, "You have to have a job to work!")
+                    else: 
+                        ultis.chat(s, "No data found for you")
+                    
 
 main()
