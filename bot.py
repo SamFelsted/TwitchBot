@@ -81,9 +81,13 @@ def main():
                     ultis.chat(s, cfg.about)
                 elif message.strip() == "!toby":
                     ultis.chat(s, toby)
-                elif message.strip == "m!reset" and username == "alphazulu22":
-                    mineCont = 0
-                    workedUsers[:] = []
+                elif message.strip() == "m!reset":
+                    if username == "alphazulu22":
+                        mineCont = 0
+                        workedUsers[:] = []
+                        ultis.chat(s, "Reset cooldowns")
+                    else:
+                        ultis.chat(s, "Not owner")
                 #Question Command
                 elif message.strip() == "!question":
                     #sends a question 
@@ -189,6 +193,8 @@ def main():
                             ultis.chat(s, "You have to have a job to work!")
                     else: 
                         ultis.chat(s, "No data found for you")
+                elif "!shop" in message and len(str(message)) <= 30:
+                    print()
 
 
 main()

@@ -1,14 +1,14 @@
 {
     "alphazulu22": {
-        "xp": 1, 
-        "level": 1, 
         "job": "pet sitter", 
+        "level": 1, 
+        "xp": 1, 
         "inv": [], 
-        "cash": 2404
+        "cash": 2677
     }, 
     "backtosnack": {
-        "job": "streamer", 
         "xp": 1, 
+        "job": "streamer", 
         "cash": 199, 
         "inv": [], 
         "level": 1
