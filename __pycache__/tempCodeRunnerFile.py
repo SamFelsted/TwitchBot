@@ -1,1 +1,0 @@
-random.randint(0, len(guns)- 1)
