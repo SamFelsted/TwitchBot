@@ -3,6 +3,7 @@ import json
 d = open("data.json")
 users = json.load(d)
 
+jobList = {"teacher": 60, "developer": 100, "streamer": 50, "pet sitter": 40}
 
 def makeData(user):
     users[user] = {'cash' : 100, 'level' : 1,'xp': 1, 'inv' : [], 'job': 'none'}
@@ -30,10 +31,15 @@ def changeMoney(username, amount):
     save()
     print(users[username]['cash'])
 
-makeData("Joe")
-makeData("AlphaZulu22")
-save()
-changeMoney('AlphaZulu22', 10)
+def getJob(username, job):
+    if jobList.has_key(job.lower()):
+        users[username]["job"] = job.lower()
+        save()
+        return True
+    else:
+        return False
+
+
 
 
 

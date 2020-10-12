@@ -17,10 +17,15 @@ y = 0
 winChance = 0
 pog = "backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG backto10SnackPOG backto10SnackGoldPOG"
 toby = "backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby backto10SnackToby"
-
-
+mineCont = 0
+def jobFormat(job, command):
+    job = job.replace(command, "")
+    job = job.replace("\r","")
+    job = job.replace("\n","")
+    return job.lower()
 
 def main():
+    global mineCont
     global winChance
     global x 
     global y
@@ -39,6 +44,8 @@ def main():
         if response == "PING :tmi.twitch.tv\r\n": 
             s.send("PONG :tmi.twitch.tv\r\n".encode("utf-8"))
             #set x == 1 for 20 mins, x == 3 for thirty
+            mineCont = 0
+            print("mine reset")
             if x == 1:
                 print("Sending") 
                 question = qst[random.randint(0, len(qst)- 1)] #Math is fun
@@ -60,6 +67,7 @@ def main():
 
          #Custom Commands 0w0 
             if canCommand:
+                print(len(str(message)))
                 #I should probably actaully do this command correctly, nahhhh
                 if message.strip() == "!time":
                     #I really don't want to type a time command
@@ -97,14 +105,14 @@ def main():
                         ultis.chat(s, "Sorry Alpha, no cuts for the programmer, but the win rate is {}%".format(winChance))
                     else:
                         ultis.chat(s, "The chance of the next fight starter winning is {}%".format(winChance))
-                elif "!fight" in message:
+                elif "!fight" in message and len(str(message)) <= 60:
                     if winChance == 0:
                         ultis.attack(s, username, message, 50)
                         print("Fair Match")
                     else:
                         ultis.attack(s, username, message, winChance)
                         winChance = 0
-                elif "!battle" in message:
+                elif "!battle" in message and len(str(message)) <= 10:
                     ultis.chat(s, "AlphaZulu22 has won and has slayed any challenger that dares to question this massive victory. He has delt 999,999,999 damage and healed for double that. He has a base life gen of 100,000 per nano sec and has a base health higher than infinity. He can not be slayed.")
                 #   Cool economy Commands
 
@@ -113,18 +121,48 @@ def main():
                         data = market.profile(username)
                         ultis.chat(s, username + ": ")
                         ultis.chat(s, " level: " + str(data[1]))
-                        ultis.chat(s, " cash: " + str(data[2]))
+                        ultis.chat(s, " cash: $" + str(data[2]))
                         ultis.chat(s, " job: "  + str(data[3]))
                     else:
                         market.makeData(username)
                         ultis.chat(s, "No data was found, so a profile was made")
-                elif message.strip() == "!mine":
-                    chanceInt = random.randint(1, 100)
-                    if chanceInt > 30:
-                        ultis.chat(s, "Woah you went mining and found a diamond worth ${}".format(chanceInt))
-                        market.changeMoney(username, chanceInt)
+                elif message.strip() == "!bal":
+                    if market.checkData(username):
+                        data = market.profile(username)
+                        ultis.chat(s, username + " has a balance of $" +  str(data[2]))
                     else:
-                        ultis.chat(s, "Lol, you went mining and found nothing")
-
+                        market.makeData(username)
+                        ultis.chat(s, "No data was found, so a profile was made")
+                elif message.strip() == "!mine":
+                    if market.checkData(username):
+                        if mineCont <= 15:
+                            mineCont += 1
+                            chanceInt = random.randint(1, 100)
+                            if chanceInt > 30:
+                                ultis.chat(s, "Woah you went mining and found a diamond worth ${}".format(chanceInt))
+                                market.changeMoney(username, chanceInt)
+                            else:
+                                ultis.chat(s, "Lol, you went mining and found nothing")
+                        else:
+                            ultis.chat(s, "The mine is empty right now please wait")
+                    else: 
+                        ultis.chat(s, "Make a profile with !profile to use this command")
+                elif "!getjob" in message and len(str(message)) <= 23:
+                    job = jobFormat(message, "!getjob ")
+                    jobCheck = market.getJob(username, job)
+                    if jobCheck and market.checkData(username):
+                        ultis.chat(s, "Congrats you now have a job as a {}".format(job))
+                    else:
+                        ultis.chat(s, "Not a valid job or you have yet to set up your profile")
+                elif message.strip() == "!joblist":
+                    send = str(market.jobList.keys()).replace("'", "").replace("[", "").replace("]", "")
+                    ultis.chat(s, "The jobs you can have are: " + send)
+                elif "!salary" in message and len(str(message)) <= 23:
+                    job = jobFormat(message, "!salary ")
+                    if market.jobList.has_key(job):
+                        salary = market.jobList[job]
+                        ultis.chat(s, "The base salary of a {} is ${}".format(job, salary))
+                    else:
+                        ultis.chat(s, "Not a valid job")
 
 main()

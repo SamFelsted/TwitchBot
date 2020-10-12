@@ -10,7 +10,7 @@ PASS = key.hiddenKey
 #oauth goes above /\ /\ /\
 
 #Channel Chat ALL LOWER CASE \/ \/ \/
-CHAN = ""
+CHAN = "alphazulu22"
 #Channel ALL LOWER /\ /\ /\
 
 RATE = (20 / 30)
@@ -34,7 +34,7 @@ questions =  ["Why did you start streaming? Who inspired you to do so?", "What w
 
 
 
-messageSend = ["If you're enjoying the stream, why not drop a follow? We are getting super close to reaching 1000 Followers! If you'd like to support even more, why not subscribe? You can sub for free with Prime Gaming (formerly known as Twitch Prime)  https://gaming.amazon.com/ It supports me monetarily and it is no extra cost to Amazon Prime members! backto10SnackPOG backto10SnackLaughCry backto10SnackHype", "Support Backtosnack: https://streamlabs.com/backtosnack/tip - Donation Link, https://discord.gg/NM5zcfH - Discord, https://twitter.com/backtosnack - Twitter, https://www.instagram.com/backtosnack/?hl=en - Instagram,https://www.tiktok.com/@backtosnack?lang=en - Tik Tok", "Check out one of my YouTube channels: https://www.youtube.com/channel/UCuAYktrxnUb0cdag2cdg8fg, Backtosnack - Stream Highlights + Edited Clipshttps://www.youtube.com/channel/UC34W67eyEJGp0I3C6HmoH5Q?, Backtosnack Stream Archive - Vods https://www.youtube.com/channel/UCFXnuYd5sVEYuTEnu59thXQ?, The Backtosnack Show - Podcast https://www.youtube.com/channel/UChOLTLI3g47RctssSyGAKDQ, Backtosnack IRL - Vlogs, Reviews, etc https://www.youtube.com/channel/UCAmoU6626Py2e0ArrY4dG4A, Daily Streaming News - Literally Daily Streaming New videos https://www.youtube.com/channel/UCFRAmJMYrEQ8E48OAgCJ0VA? "]
+messageSend = ["If you're enjoying the stream, why not drop a follow? We are getting super close to reaching 1000 Followers! If you'd like to support even more, why not subscribe? You can sub for free with Prime Gaming (formerly known as Twitch Prime)  https://gaming.amazon.com/ It supports me monetarily and it is no extra cost to Amazon Prime members! backto10SnackPOG backto10SnackLaughCry backto10SnackHype", "Support Backtosnack: https://streamlabs.com/backtosnack/tip - Donation Link, https://discord.gg/NM5zcfH - Discord, https://twitter.com/backtosnack - Twitter, https://www.instagram.com/backtosnack/?hl=en - Instagram,https://www.tiktok.com/@backtosnack?lang=en - Tik Tok", "Check out one of my YouTube channels: https://www.youtube.com/channel/UCuAYktrxnUb0cdag2cdg8fg, Backtosnack - Stream Highlights + Edited Clipshttps://www.youtube.com/channel/UC34W67eyEJGp0I3C6HmoH5Q?, Backtosnack Stream Archive - Vods https://www.youtube.com/channel/UCFXnuYd5sVEYuTEnu59thXQ?, The Backtosnack Show - Podcast https://www.youtube.com/channel/UChOLTLI3g47RctssSyGAKDQ, Backtosnack IRL - Vlogs, Reviews, etc https://www.youtube.com/channel/UCAmoU6626Py2e0ArrY4dG4A, Daily Streaming News - Literally Daily Streaming New videos https://www.youtube.com/channel/UCFRAmJMYrEQ8E48OAgCJ0VA?, Back to Snack Short - Short clips https://www.youtube.com/channel/UClSJqzeMljprqrxBnGOq0uw/ "]
 
 
 about = "Howdy, I have been taken over by a program made by AlphaZulu22. I was made in python3."
