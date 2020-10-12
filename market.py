@@ -7,7 +7,7 @@ users = json.load(d)
 jobList = {"teacher": [60, 10, 60], "developer": [100, 0, 10], "streamer": [10, 5, 1000], "pet sitter": [20, 20, 100], "gamer": [5, 0, 100], "artist":[10, 10, 200], "musican":[30, 20, 60], "mom":[10, 50, 60], "farmer":[30, 40, 50]}
 
 def makeData(user):
-    users[user] = {'cash' : 100, 'level' : 1,'xp': 1, 'inv' : [], 'job': 'none'}
+    users[user] = {'cash' : 100, 'level' : 1,'xp': 1, 'inv' : {}, 'job': 'none'}
     save()
 
 def save():
@@ -31,6 +31,8 @@ def changeMoney(username, amount):
     users[username]['cash'] += amount 
     save()
     print(users[username]['cash'])
+def getInv(username):
+    return users[username]['inv']
 
 def getJob(username, job):
     if jobList.has_key(job.lower()):
