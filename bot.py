@@ -25,6 +25,7 @@ def jobFormat(job, command):
     return job.lower()
 
 def main():
+    workedUsers = []
     global mineCont
     global winChance
     global x 
@@ -46,6 +47,8 @@ def main():
             #set x == 1 for 20 mins, x == 3 for thirty
             mineCont = 0
             print("mine reset")
+            workedUsers[:] = []
+            print("Work clean")
             if x == 1:
                 print("Sending") 
                 question = qst[random.randint(0, len(qst)- 1)] #Math is fun
@@ -78,6 +81,9 @@ def main():
                     ultis.chat(s, cfg.about)
                 elif message.strip() == "!toby":
                     ultis.chat(s, toby)
+                elif message.strip == "m!reset" and username == "alphazulu22":
+                    mineCont = 0
+                    workedUsers[:] = []
                 #Question Command
                 elif message.strip() == "!question":
                     #sends a question 
@@ -168,17 +174,21 @@ def main():
                     if market.checkData(username):
                         data = market.profile(username)
                         if data[3] != "none":
-                            job = data[3]
-                            pay = market.jobList[job][0]
-                            low = market.jobList[job][1]
-                            high = market.jobList[job][2]
-                            bonus = random.randint(low, high)
-                            market.changeMoney(username, pay + bonus)
-                            ultis.chat(s, "You made ${} with a bonus of ${} as a {}".format(pay, bonus, job))
+                            if username in workedUsers:
+                                ultis.chat(s, "You're overworked man, try again in 15-20 mins")
+                            else:
+                                job = data[3]
+                                pay = market.jobList[job][0]
+                                low = market.jobList[job][1]
+                                high = market.jobList[job][2]
+                                bonus = random.randint(low, high)
+                                market.changeMoney(username, pay + bonus)
+                                ultis.chat(s, "You made ${} with a bonus of ${} as a {}".format(pay, bonus, job))
+                                workedUsers.append(username)
                         else:
                             ultis.chat(s, "You have to have a job to work!")
                     else: 
                         ultis.chat(s, "No data found for you")
-                    
+
 
 main()
