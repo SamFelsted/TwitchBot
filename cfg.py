@@ -1,4 +1,3 @@
-import key
 #Settings
 connection_data = ('irc.chat.twitch.tv', 6667)
 NICK = "SnackBOT"
