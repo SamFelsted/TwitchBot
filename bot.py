@@ -233,7 +233,7 @@ def main():
                         ultis.chat(s, "You must have a profile")
                     canCommand = True
             if message.strip() == "m!r":
-                    if username == "alphazulu22" or "backtosnanck":
+                    if username == "alphazulu22" or "backtosnack":
                         canCommand = True
                         mineCont = 0
                         workedUsers[:] = []
