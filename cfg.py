@@ -1,4 +1,5 @@
 #Settings
+import key
 connection_data = ('irc.chat.twitch.tv', 6667)
 NICK = "SnackBOT"
 #Put oauth token here SUPER SECRE DO NOT SHARE \/ \/ \/
