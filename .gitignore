@@ -2,10 +2,10 @@ __pychache__
 .vscode
 key.py
 key.pyc
-tempCodeRunnerFile.py
 ultis.pyc
 cfg.pyc
 market.pyc
-cfg.py
+cfg
 data.json
 cfg.py
+data
