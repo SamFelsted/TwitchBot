@@ -1,0 +1,6 @@
+
+*.json
+*.pyc
+cfg.py
+key.py
+data.json
