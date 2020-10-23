@@ -233,7 +233,7 @@ def main():
                         ultis.chat(s, "You must have a profile")
                     canCommand = True
             if message.strip() == "m!r":
-                    if username == "alphazulu22" or "backtosnack":
+                    if username == "alphazulu22" or username ==  "backtosnack":
                         canCommand = True
                         mineCont = 0
                         workedUsers[:] = []
@@ -243,7 +243,8 @@ def main():
                         ultis.chat(s, "Not owner")
                         print(username)
             if "m!c" in message:
-                if username == "alphazulu22" or "backtosnack":
+                print(username)
+                if username == "alphazulu22" or username == "backtosnack":
                     stuff = []
                     splitM = str(message).split()
                     for thing in splitM:
