@@ -15,7 +15,8 @@ def chat(sock, msg):
     #Sends chat to server
     print(msg)
     sock.send("PRIVMSG #{} :{}\r\n".format(cfg.CHAN, msg))
-
+def timeout(sock, user, seconds=60):
+    chat(sock, ".timeout {} {}".format(user, seconds))
 
 
 def winFight(sock, user,target):

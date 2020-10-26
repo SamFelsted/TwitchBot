@@ -246,7 +246,8 @@ def main():
                             market.changeMoney(username, chance)
                             ultis.chat(s, "Woah, you did it, you just walked away with ${} from {}".format(chance, target))
                         else:
-                            ultis.chat(s, "Lol you failed and lost ${}".format(chance))
+                            ultis.chat(s, "Lol you failed and lost ${} If you're gonna try and rob someone, you better not get caught! This time though, you GOT caught! For that, you are going away for 30 looooong years. (30 Twitch Years is just 30 seconds in IRL time). Enjoy your time in the Bucket. Kappa".format(chance))
+                            ultis.timeout(s, username, 30)
                             market.changeMoney(username,-1 * chance)
                     else:
                         ultis.chat(s, "Can't steal from them")
