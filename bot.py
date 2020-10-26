@@ -22,6 +22,7 @@ def jobFormat(job, command):
     job = job.replace(command, "")
     job = job.replace("\r","")
     job = job.replace("\n","")
+    print(job)
     return job.lower()
 
 def main():
@@ -232,6 +233,22 @@ def main():
                     else:
                         ultis.chat(s, "You must have a profile")
                     canCommand = True
+                elif message.strip() == "!lurk":
+                    ultis.chat(s, "{} is now lurking".format(username))
+                elif "!steal" in message:
+                    target = jobFormat(message, "!steal ")
+                    if market.checkData(target):
+                        chance = random.randint(1, 100)
+                        if chance > 70:
+                            market.changeMoney(target, ( -1 * chance))
+                            market.changeMoney(username, chance)
+                            ultis.chat(s, "Woah, you did it, you just walked away with ${} from {}".format(chance, target))
+                        else:
+                            ultis.chat(s, "Lol you failed and lost ${}".format(chance))
+                            market.changeMoney(username,-1 * chance)
+                    else:
+                        ultis.chat(s, "Can't steal from them")
+
             if message.strip() == "m!r":
                     if username == "alphazulu22" or username ==  "backtosnack":
                         canCommand = True
