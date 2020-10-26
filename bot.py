@@ -112,6 +112,8 @@ def main():
                     canCommand = False
                     ultis.chat(s, pog)
                     canCommand = True
+                elif message.strip() == "!wholesome":
+                    ultis.chat(s, "https://www.youtube.com/watch?v=IymCuWuqcXc")
                 #Gun Command
                 elif message.strip() == "!shoot":
                     canCommand = False
