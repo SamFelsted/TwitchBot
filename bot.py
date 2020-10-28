@@ -66,7 +66,7 @@ def main():
                 print(x)
                 print(y)
         else:
-            username = re.search(r"\w+", response).group(0)
+            username = re.search(r"\w+", response).group(0).lower()
             message = CHAT_MSG.sub("", response)
             print(response)
 
@@ -239,7 +239,7 @@ def main():
                     ultis.chat(s, "{} is now lurking".format(username))
                 elif "!steal" in message:
                     target = jobFormat(message, "!steal ")
-                    if market.checkData(target):
+                    if market.checkData(target) and market.checkData(username):
                         chance = random.randint(1, 100)
                         if chance > 70:
                             market.changeMoney(target, ( -1 * chance))
@@ -250,7 +250,7 @@ def main():
                             ultis.timeout(s, username, 30)
                             market.changeMoney(username,-1 * chance)
                     else:
-                        ultis.chat(s, "Can't steal from them")
+                        ultis.chat(s, "Can't steal from them or you don't have a profile")
 
             if message.strip() == "m!r":
                     if username == "alphazulu22" or username ==  "backtosnack":
