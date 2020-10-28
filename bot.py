@@ -66,7 +66,8 @@ def main():
                 print(x)
                 print(y)
         else:
-            username = re.search(r"\w+", response).group(0).lower()
+            username = re.search(r"\w+", response).group(0)
+            username = username.lower()
             message = CHAT_MSG.sub("", response)
             print(response)
 
