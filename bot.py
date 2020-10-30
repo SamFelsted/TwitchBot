@@ -184,7 +184,7 @@ def main():
                     canCommand = True
                 elif "!getjob" in message and len(str(message)) <= 23:
                     canCommand = False
-                    job = jobFormat(message, "!getjob ")
+                    job = jobFormat(message, "!getjob ").lower()
                     jobCheck = market.getJob(username, job)
                     if jobCheck and market.checkData(username):
                         ultis.chat(s, "Congrats you now have a job as a {}".format(job))
@@ -196,10 +196,10 @@ def main():
                     send = str(market.jobList.keys()).replace("'", "").replace("[", "").replace("]", "")
                     ultis.chat(s, "The jobs you can have are: " + send)
                     canCommand = True
-                elif "!salary" in message and len(str(message)) <= 23:
+                elif "!salary" in message and len(str(message)) <= 50:
                     canCommand = False
                     job = jobFormat(message, "!salary ")
-                    if market.jobList.has_key(job):
+                    if market.jobList.has_key(job.lower()):
                         salary = market.jobList[job]
                         ultis.chat(s, "The base salary of a {} is ${}, with a maxium bonus of ${}".format(job, salary[0], salary[2]))
                     else:
@@ -241,7 +241,7 @@ def main():
                 elif "!steal" in message:
                     target = jobFormat(message, "!steal ")
                     if market.checkData(target) and market.checkData(username):
-                        chance = random.randint(1, 100)
+                        chance = (market.checkLuck, 100)
                         if chance > 70:
                             market.changeMoney(target, ( -1 * chance))
                             market.changeMoney(username, chance)
@@ -252,6 +252,24 @@ def main():
                             market.changeMoney(username,-1 * chance)
                     else:
                         ultis.chat(s, "Can't steal from them or you don't have a profile")
+                elif "!gamble" in message:
+                    amount = jobFormat(message, "!gamble ")
+                    if ultis.checkInt(amount):
+                        amount = int(amount)
+                        if market.checkData(username) and market.checkMoney(username, amount):
+                            number = random.randint(0, 100)
+                            if number > 50:
+                                market.changeMoney(username, amount * 2)
+                                ultis.chat(s, "Woah, you just made money")
+                            else:
+                                market.changeMoney(username, -1 * amount)
+                                ultis.chat(s, "Yikes, you just money :(")
+                        else: 
+                            ultis.chat(s, ":( something went wrong")
+                    else:
+                        ultis.chat(s, "You can't gamble that!")
+                elif "!luck" in message:
+                    ultis.chat(s, "your luck is {}%".format(market.checkLuck(username)))
 
             if message.strip() == "m!r":
                     if username == "alphazulu22" or username ==  "backtosnack":
@@ -274,5 +292,9 @@ def main():
                     ultis.chat(s, "Money changed.... I think")
                 else:
                     ultis.chat(s, "You can't cheat! :P")
+            if "m!p" in message:
+                if username == "alphazulu22":
+                    check = jobFormat(message, "m!cp")
+                    ultis.chat(s, market.checkData(check))
 
 main()

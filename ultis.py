@@ -70,3 +70,12 @@ def attack(sock, user, target, high):
             loseFight(sock, user, target)
         else:
             loseFight(sock, user, target)
+
+
+def checkInt(num):
+    try: 
+        int(num)
+        return True
+    except ValueError:
+        print("num is not an int")
+        return False
